@@ -71,22 +71,18 @@
                                         </svg>
                                     </div>
 
-                                    <form action="upload" method="POST" enctype="multipart/form-data">
-                                        {% csrf_token %}
+                                    <form action="upload" method="POST" enctype="multipart/form-data" >
+                                    {% csrf_token %}
                                     <p class="my-3 leading-6"> Upload pics
                                     </p>
                                     <div>
                                         <input type="file" name="image_upload">
-<!--                                        <a href="#" class="button soft-warning small"> Choose file</a>-->
-                                        <textarea class="button soft-warning small" name="caption" placeholder="caption. . ."></textarea>
+                                        <!-- <a href="#" class="button soft-warning small"> Choose file</a> -->
+                                        <textarea class="button soft-warning small" name="caption" placeholder="caption..." ></textarea>
                                         <br>
                                         <button class="button bg-blue-700" type="submit" >Upload</button>
                                     </div>
-                                        <div class="px-4 py-3 -mx-5 -mb-4 mt-5 border-t text-sm">
-                                Your Image size Must be Maxmium 999MB
-                                        </div>
                                     </form>
-
 <!--                                    <a href="#" class="uk-text-muted mt-3 uk-link"-->
 <!--                                        uk-toggle="target: .choose-upload ;  animation: uk-animation-slide-right-small, uk-animation-slide-left-medium; queued: true">-->
 <!--                                        Or Import Video </a>-->
@@ -179,6 +175,7 @@
                         </a>
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                             <ul>
+                                <li><a href="/profile/{{user_profile.user}}"> Profile </a> </li>
                                 <li><a href="/settings"> Account setting </a> </li>
                                 <li><a href="logout"> Log Out</a></li>
                             </ul>
@@ -344,18 +341,19 @@
 
                     </div>
 
-                    <!-- right sidebar-->
+                     <!-- right sidebar-->
                     <div class="lg:w-5/12">
 
                         <div class="bg-white  shadow-md rounded-md overflow-hidden">
 
                             <div class="bg-gray-50  border-b border-gray-100 flex items-baseline justify-between py-4 px-6 ">
                                 <h2 class="font-semibold text-lg">Users You Can Follow</h2>
-<!--                                <a href="#"> Refresh</a>-->
+                                <!-- <a href="#"> Refresh</a> -->
                             </div>
 
-                            {% for  suggestion in suggestions_username_profile_list %}
                             <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
+
+                            {% for  suggestion in suggestions_username_profile_list %}
                                 <div class="flex items-center justify-between py-3">
                                     <div class="flex flex-1 items-center space-x-4">
                                         <a href="/profile/{{suggestion.user}}">
@@ -363,17 +361,16 @@
                                         </a>
                                         <div class="flex flex-col">
                                             <a href="/profile/{{suggestion.user}}" class="block capitalize font-semibold"> {{suggestion.user}} </a>
-                                            {% if suggestion.bio|length <= 8 %}
+                                            {% if suggestion.bio|length <= 11 %}
                                             <span class="block capitalize text-sm"> {{suggestion.bio}} </span>
-                                            {% elif suggestion.bio|length > 11 %}
-                                            <span class="block capitalize text-sm"> {{suggestion.bio|slice:":10"}} . . . </span>
+                                            {% else %}
+                                            <span class="block capitalize text-sm"> {{suggestion.bio|slice:":11"}} . . . </span>
                                             {% endif%}
                                         </div>
                                     </div>
-                                    <a href="/follow" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 "> Follow </a>
+                                    <a href="/profile/{{suggestion.user}}" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 "> View </a>
                                     </div>
                             {% endfor %}
-
                             </div>
                         </div>
                     </div>

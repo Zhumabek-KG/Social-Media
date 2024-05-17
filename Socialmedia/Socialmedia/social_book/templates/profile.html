@@ -30,7 +30,7 @@
 				<form action="/follow" method="POST">
 					{% csrf_token %}
 					<div class="add-btn">
-					<span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>
+					<span style="color: white; font-size: 27px; align-items: center;  520px;"><b><u><a href="/">Home</a></u></b></span>
 					{% if user_post_length == 0 %}
 					<span style="color: white; font-size: 27px;"><b>No posts</b></span>
 					{% elif user_post_length == 1 %}
@@ -116,7 +116,7 @@
 				{{user_profile.bio}}
 			</div>
 		</section>
-		
+
 	<section>
 		<div class="gap gray-bg">
 			<div class="container-fluid">
@@ -125,12 +125,12 @@
 						<div class="row" id="page-contents">
 							<div class="col-lg-3">
 								<aside class="sidebar static">
-									
-									
-									
+
+
+
 								</aside>
 							</div><!-- sidebar -->
-							
+
 
 
 
